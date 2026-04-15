@@ -34,14 +34,7 @@ const fastify = Fastify({
 			});
 	},
 });
-fastify.register(basicAuth, {
-    validate: async (username, password) => {
-        if (username !== 'kyler' || password !== 'notpassword') {
-            throw new Error('Unauthorized');
-        }
-    },
-    authenticate: { realm: 'Scramjet Proxy' }
-});
+
 
 fastify.addHook('onRequest', (req, reply, done) => {
     fastify.basicAuth(req, reply, (err) => {
